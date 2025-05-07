@@ -215,7 +215,7 @@ def calculate_reward(state, action, vm_nums):
     next_state = np.append(updated_loads, est_runtimes)
 
     all_makespan = []
-    for i in range(3):
+    for i in range(vm_nums):
         loads = vm_loads.copy()
         loads[i] += est_runtimes[i]
         all_makespan.append(max(loads)-predicted_makespan)
