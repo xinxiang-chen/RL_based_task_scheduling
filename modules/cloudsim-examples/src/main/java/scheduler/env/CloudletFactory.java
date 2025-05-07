@@ -23,32 +23,32 @@ public class CloudletFactory {
 
     public static List<Cloudlet> createCloudletList(int brokerId) {
         List<Cloudlet> list = new ArrayList<>();
-        Random rand = new Random(CloudletConfig.SEED);
-
-        if (Objects.equals(CloudletConfig.DATASET_NAME, "random")){
-            for (int i = 0; i < CloudletConfig.NUM_CLOUDLETS; i++) {
-                long length = CloudletConfig.CLOUDLET_LENGTH;
-                if (CloudletConfig.RANDOM_LENGTH) {
-                    long delta = rand.nextInt(CloudletConfig.RANDOM_DELTA * 2) - CloudletConfig.RANDOM_DELTA;
-                    length = Math.max(CloudletConfig.MIN_LENGTH, length + delta);
-                }
-
-                Cloudlet cl = new Cloudlet(
-                        i,
-                        length,
-                        CloudletConfig.CLOUDLET_PES,
-                        CloudletConfig.CLOUDLET_FILESIZE,
-                        CloudletConfig.CLOUDLET_OUTPUTSIZE,
-                        new UtilizationModelFull(),
-                        new UtilizationModelFull(),
-                        new UtilizationModelFull()
-                );
-
-                cl.setUserId(brokerId);
-                list.add(cl);
-            }
-        }
-        else {   // using dataset
+//        Random rand = new Random(CloudletConfig.SEED);
+//
+//        if (Objects.equals(CloudletConfig.DATASET_NAME, "random")){
+//            for (int i = 0; i < CloudletConfig.NUM_CLOUDLETS; i++) {
+//                long length = CloudletConfig.CLOUDLET_LENGTH;
+//                if (CloudletConfig.RANDOM_LENGTH) {
+//                    long delta = rand.nextInt(CloudletConfig.RANDOM_DELTA * 2) - CloudletConfig.RANDOM_DELTA;
+//                    length = Math.max(CloudletConfig.MIN_LENGTH, length + delta);
+//                }
+//
+//                Cloudlet cl = new Cloudlet(
+//                        i,
+//                        length,
+//                        CloudletConfig.CLOUDLET_PES,
+//                        CloudletConfig.CLOUDLET_FILESIZE,
+//                        CloudletConfig.CLOUDLET_OUTPUTSIZE,
+//                        new UtilizationModelFull(),
+//                        new UtilizationModelFull(),
+//                        new UtilizationModelFull()
+//                );
+//
+//                cl.setUserId(brokerId);
+//                list.add(cl);
+//            }
+//        }
+//        else {   // using dataset
             List<Integer> lengthList = new ArrayList<>();
 
             try (FileReader reader = new FileReader(CloudletConfig.DATASET_PATH);
@@ -82,7 +82,7 @@ public class CloudletFactory {
                 cl.setUserId(brokerId);
                 list.add(cl);
             }
-        }
+//        }
 
 
         return list;

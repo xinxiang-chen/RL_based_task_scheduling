@@ -219,6 +219,7 @@ def calculate_reward(state, action, vm_nums):
         loads = vm_loads.copy()
         loads[i] += est_runtimes[i]
         all_makespan.append(max(loads)-predicted_makespan)
+    print(all_makespan)
     normalized = normalize_to_minus_one_one(all_makespan)
     print(normalized)
 
