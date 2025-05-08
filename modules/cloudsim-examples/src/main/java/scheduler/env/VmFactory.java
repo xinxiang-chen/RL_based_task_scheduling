@@ -19,15 +19,16 @@ public class VmFactory {
     public static List<Vm> createVmList(int brokerId) {
         List<Vm> list = new ArrayList<>();
 
-        int numVms = VmConfig.MIPS_LIST.length;
+        int numVms = VmConfig.VM_NUMS;
         for (int i = 0; i < numVms; i++) {
+            int idx = i % VmConfig.MIPS_LIST.length;
             Vm vm = new Vm(
                     i, brokerId,
-                    VmConfig.MIPS_LIST[i],
-                    VmConfig.PES_LIST[i],
-                    VmConfig.RAM_LIST[i],
-                    VmConfig.BW_LIST[i],
-                    VmConfig.SIZE_LIST[i],
+                    VmConfig.MIPS_LIST[idx],
+                    VmConfig.PES_LIST[idx],
+                    VmConfig.RAM_LIST[idx],
+                    VmConfig.BW_LIST[idx],
+                    VmConfig.SIZE_LIST[idx],
                     VmConfig.VMM,
                     new CloudletSchedulerSpaceShared()  // 也可以传参切换策略
             );

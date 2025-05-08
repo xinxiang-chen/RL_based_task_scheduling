@@ -113,7 +113,7 @@ def run_server():
     saving_path = f"modules/cloudsim-examples/src/main/python/{dataset_name}_{task_nums}_{vm_nums}_{iteration_nums}"
 
     # DQN和优化器初始化
-    input_dim = 6  # 假设state有7个维度（虚拟机负载等信息）
+    input_dim = 2 * vm_nums  # 假设state有7个维度（虚拟机负载等信息）
     output_dim = vm_nums  # align with parameter in java (vm nums) 
     train_count = 0
 

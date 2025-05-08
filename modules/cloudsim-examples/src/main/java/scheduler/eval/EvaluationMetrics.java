@@ -47,6 +47,7 @@ public class EvaluationMetrics {
             makespan = Math.max(makespan, c.getFinishTime());
 
             // 成本估算
+            vmId = vmId % VmConfig.COST_C1.length;
             double cost = execTime * (costC1[vmId] + costC2[vmId] + costC3[vmId]);
             totalCost += cost;
         }

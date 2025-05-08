@@ -608,4 +608,5 @@ cython_debug/
 
 # Ignore GoCJ folders only under the python path
 modules/cloudsim-examples/src/main/python/GoCJ*
-modules/cloudsim-examples/src/main/python/random*
+modules/cloudsim-examples/src/main/python/Random*
+modules/cloudsim-examples/src/main/python/Synthetic*

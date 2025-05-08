@@ -12,6 +12,7 @@ import org.cloudbus.cloudsim.DatacenterBroker;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.core.CloudActionTags;
 import org.cloudbus.cloudsim.core.CloudSimTags;
+import scheduler.model.VmConfig;
 import scheduler.pso.PSOScheduler;
 
 import java.util.HashMap;
@@ -39,7 +40,8 @@ public class PSOBroker extends DatacenterBroker {
             Cloudlet cl = cloudlets.get(i);
             for (int j = 0; j < numVms; j++) {
                 Vm vm = vms.get(j);
-                execMatrix[i][j] = (double) cl.getCloudletLength() / vm.getMips();
+                int j_ = j % VmConfig.COST_C1.length;
+                execMatrix[i][j_] = (double) cl.getCloudletLength() / vm.getMips();
             }
         }
 

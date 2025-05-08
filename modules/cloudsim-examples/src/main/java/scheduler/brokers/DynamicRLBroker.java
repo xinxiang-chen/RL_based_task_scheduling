@@ -92,7 +92,7 @@ public class DynamicRLBroker extends DatacenterBroker {
         Log.printLine(CloudSim.clock() + ": " + this.getName() + ": Cloudlet " + cloudlet.getCloudletId() + " Completed");
         --this.cloudletsSubmitted;
 
-        int guestId = cloudlet.getGuestId();
+        int guestId = cloudlet.getGuestId() / VmConfig.COST_C1.length;
         double cloudletExecTime = cloudlet.getExecFinishTime() - cloudlet.getExecStartTime();
         vmCosts[guestId] += cloudletExecTime * (VmConfig.COST_C1[guestId] + VmConfig.COST_C2[guestId] + VmConfig.COST_C3[guestId]);
 

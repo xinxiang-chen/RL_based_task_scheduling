@@ -28,4 +28,4 @@ def draw_training_process_metrics(file_path, file_name):
     plt.show()
 
 if __name__ == '__main__':
-    draw_training_process_metrics("modules/cloudsim-examples/src/main/python/GoCJ_250_3_10", "result.csv")
+    draw_training_process_metrics("modules/cloudsim-examples/src/main/python/GoCJ_100_3_10", "result.csv")

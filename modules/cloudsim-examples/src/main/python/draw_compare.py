@@ -1,44 +1,67 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
-def draw_compare(file_path, file_name):
+def draw_compare(file_name):
+    task_nums = 1000
+    vm_nums = 10
+    iteration_nums = 10
+
+    
+
     # Read data from CSV file
-    df = pd.read_csv(f"{file_path}/{file_name}")
+    df1 = pd.read_csv(f"modules/cloudsim-examples/src/main/python/Synthetic_{task_nums}_{vm_nums}_{iteration_nums}" + f"/{file_name}")
+    df2 = pd.read_csv(f"modules/cloudsim-examples/src/main/python/Random_{task_nums}_{vm_nums}_{iteration_nums}" + f"/{file_name}")
+    df3 = pd.read_csv(f"modules/cloudsim-examples/src/main/python/GoCJ_{task_nums}_{vm_nums}_{iteration_nums}" + f"/{file_name}")
 
-    print(df)
-    # Create a 2x2 grid of subplots
-    fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+    print(df1)
+    metrics = ["Makespan", "TotalCost", "Utilization", "Imbalance"]
+    
 
-    # Plot Makespan with log scale
-    axs[0, 0].bar(df['Algo'], df['Makespan'], color='skyblue')
-    axs[0, 0].set_title('Makespan Comparison')
-    axs[0, 0].set_ylabel('Makespan')
-    axs[0, 0].set_yscale('log')  # Apply logarithmic scale to the y-axis
 
-    # Plot TotalCost with log scale
-    axs[0, 1].bar(df['Algo'], df['TotalCost'], color='lightgreen')
-    axs[0, 1].set_title('TotalCost Comparison')
-    axs[0, 1].set_ylabel('Total Cost')
-    axs[0, 1].set_yscale('log')  # Apply logarithmic scale to the y-axis
+    for i in range(len(metrics)):
 
-    # Plot Utilization with log scale
-    axs[1, 0].bar(df['Algo'], df['Utilization'], color='lightcoral')
-    axs[1, 0].set_title('Utilization Comparison')
-    axs[1, 0].set_ylabel('Utilization')
-    axs[1, 0].set_yscale('log')  # Apply logarithmic scale to the y-axis
+        # Plot the distribution with side-by-side bars
+        bar_width = 0.3
+        index = np.arange(3)
+        color1 = (223/255, 122/255, 94/255)
+        color2 = (60/255, 64/255, 91/255)
+        color3 = (130/255, 178/255, 154/255)
+        
+        metric = metrics[i]
+        plt.figure(figsize=(10, 8), dpi=300)
+        plt.rcParams.update({'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'})
+        bars1 = plt.bar(index, df1[metric], bar_width, label="Synthetic", color=color3)
+        bars2 = plt.bar(index + bar_width, df2[metric], bar_width, label="Random", color=color2)
+        bars3 = plt.bar(index + 2*bar_width, df3[metric], bar_width, label="GoCJ", color=color1)
 
-    # Plot Imbalance with log scale
-    axs[1, 1].bar(df['Algo'], df['Imbalance'], color='lightyellow')
-    axs[1, 1].set_title('Imbalance Comparison')
-    axs[1, 1].set_ylabel('Imbalance')
-    axs[1, 1].set_yscale('log')  # Apply logarithmic scale to the y-axis
 
-    # Adjust layout
-    plt.tight_layout()
-    plt.savefig(f"{file_path}/compare.png")
+        # Add data labels
+        for bar in bars1:
+            height = bar.get_height()
+            if height !=0:
+                plt.text(bar.get_x() + bar.get_width() / 2, height, f"{round(height, 2)}", ha='center', va='bottom', fontsize=20)
 
-    # Show the plot
-    plt.show()
+        for bar in bars2:
+            height = bar.get_height()
+            if height !=0:
+                plt.text(bar.get_x() + bar.get_width() / 2, height, f"{round(height, 2)}", ha='center', va='bottom', fontsize=20)
+
+        for bar in bars3:
+            height = bar.get_height()
+            if height !=0:
+                plt.text(bar.get_x() + bar.get_width() / 2, height, f"{round(height, 2)}", ha='center', va='bottom', fontsize=20)
+
+        plt.legend(fontsize=16)
+        plt.xlabel("Algorithms", fontsize=28)
+        plt.ylabel(f"{metric}", fontsize=28)
+        plt.xticks(index + bar_width / 2, df1['Algo'], fontsize=24)
+        plt.yticks(fontsize=24)
+        plt.tight_layout()
+
+        plt.savefig(f"modules/cloudsim-examples/src/main/python/figs/result_figs/{metric}_result_compare.eps")
+        # plt.show()
+    
 
 if __name__ == '__main__':
-    draw_compare("modules/cloudsim-examples/src/main/python/GoCJ_250_3_10", "compare.csv")
+    draw_compare("compare.csv")

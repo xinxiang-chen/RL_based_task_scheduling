@@ -8,6 +8,7 @@ package scheduler.pso;
 
 
 import net.sourceforge.jswarm_pso.FitnessFunction;
+import scheduler.model.VmConfig;
 
 import java.util.Arrays;
 
@@ -68,7 +69,7 @@ public class SchedulingProblem extends FitnessFunction {
 
         for (int i = 0; i < numCloudlets; i++) {
 //            int vmIndex = Math.max(0, Math.min(numVms - 1, (int) Math.floor(position[i])));
-            int vmIndex = vmIndexList[i];
+            int vmIndex = vmIndexList[i] % VmConfig.COST_C1.length;
             double time = execTime[i][vmIndex];
 
             vmTimes[vmIndex] += time;
@@ -80,7 +81,8 @@ public class SchedulingProblem extends FitnessFunction {
 
             double minCost = Double.MAX_VALUE;
             for (int j = 0; j < numVms; j++) {
-                double candidate = execTime[i][j] * (costC1[j] + costC2[j] + costC3[j]);
+                int j_ = j % VmConfig.COST_C1.length;
+                double candidate = execTime[i][j_] * (costC1[j_] + costC2[j_] + costC3[j_]);
                 if (candidate < minCost) minCost = candidate;
             }
             minCostPerTask[i] = minCost;

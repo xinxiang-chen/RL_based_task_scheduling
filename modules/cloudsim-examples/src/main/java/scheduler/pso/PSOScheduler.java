@@ -65,13 +65,13 @@ public class PSOScheduler {
         swarm.setInertia(0.9);
 
         // PSO 主循环
-        int maxIterations = 150;
+        int maxIterations = 200;
         for (int i = 0; i < maxIterations; i++) {
             swarm.evolve();
 
             // 日志：显示当前最优值
             double bestFitness = swarm.getBestFitness();
-            System.out.printf("Iteration %d: Best Makespan = %.4f%n", i + 1, bestFitness);
+            System.out.printf("Iteration %d: Best Fitness = %.4f%n", i + 1, bestFitness);
         }
 
         // 获取最优解（Cloudlet→VM 分配方案）

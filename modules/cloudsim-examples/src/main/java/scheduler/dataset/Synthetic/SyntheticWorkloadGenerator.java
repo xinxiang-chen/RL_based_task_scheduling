@@ -18,7 +18,7 @@ import java.util.Random;
 public class SyntheticWorkloadGenerator {
 
     // Job size ranges in MIs
-    private static final int TINY_MIN = 1;
+    private static final int TINY_MIN = 100;
     private static final int TINY_MAX = 250;
     private static final int SMALL_MIN = 800;
     private static final int SMALL_MAX = 1200;
@@ -30,9 +30,9 @@ public class SyntheticWorkloadGenerator {
     private static final int XLARGE_MAX = 45000;
 
     // Proportions for each job type
-    private static final double TINY_RATIO = 0.2;
+    private static final double TINY_RATIO = 0.1;
     private static final double SMALL_RATIO = 0.3;
-    private static final double MEDIUM_RATIO = 0.2;
+    private static final double MEDIUM_RATIO = 0.3;
     private static final double LARGE_RATIO = 0.2;
     private static final double XLARGE_RATIO = 0.1;
     private static final int TOTAL_TASKS = 1000;
