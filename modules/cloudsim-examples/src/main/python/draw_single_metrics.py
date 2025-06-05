@@ -18,7 +18,7 @@ color2 = (60/255, 64/255, 91/255)
 color3 = (132/255, 178/255, 154/255)
 
 plt.rcParams['lines.linewidth'] = 4
-plt.rcParams.update({'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'})
+# plt.rcParams.update({'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'})
 
 
 # Generate separate plots for each metric
@@ -83,7 +83,7 @@ for i, metric in enumerate(metrics):
         ax1.plot(df3["Iteration"], df3[metric], label="Synthetic", marker='o', color=color3, markersize=10)
         # ax1.set_ylabel(f"{metric} (Synthetic)", fontsize=24, color=color1)
         ax1.tick_params(axis='y', labelsize=32)
-        ax1.legend(fontsize=22, loc='upper right')
+        ax1.legend(fontsize=22)
 
     # Title and axis labels
     # plt.title(f"{metric} vs Iteration", fontsize=32)
@@ -97,5 +97,5 @@ for i, metric in enumerate(metrics):
 
     # Save each graph as a separate file
     plt.tight_layout(pad=2.0)
-    plt.savefig(f"modules/cloudsim-examples/src/main/python/figs/result_figs/{metric}_exp_results_{task_nums}.eps")
+    plt.savefig(f"modules/cloudsim-examples/src/main/python/figs/result_figs/{metric}_exp_results_{task_nums}.pdf")
     # plt.show()
