@@ -1,15 +1,15 @@
 # Runtime Environment
-1. All code is located in the modules\cloudsim-examples\src\main directory, while other code belongs to the CloudSim module;
+1. All code is located in the `modules\cloudsim-examples\src\main` directory, while other code belongs to the CloudSim module;
 
-2. To start the experiment: first run rl_server.py, and once the port is successfully listening, then start Main.java;
+2. To start the experiment: first `run rl_server.py`, and once the port is successfully listening, then start `Main.java`;
 
-3. All experiment parameters (such as VM parameters, datasets, etc.) can be modified in the configuration files under modules\cloudsim-examples\src\main\java\scheduler\model;
+3. All experiment parameters (such as VM parameters, datasets, etc.) can be modified in the configuration files under `modules\cloudsim-examples\src\main\java\scheduler\model`;
 
-4. After the experiment ends, both the model and the results will be saved in the python\ directory, with the folder named as dataset_taskNumber_vmNumber_iterations;
+4. After the experiment ends, both the model and the results will be saved in the `python\` directory, with the folder named as `dataset_taskNumber_vmNumber_iterations`;
 
-5. Different simulation methods can be executed by running Example.run() in Main.java;
+5. Different simulation methods can be executed by running `Example.run()` in `Main.java`;
 
-6. The python directory also contains some plotting code, but certain data needs to be manually collected and organized.
+6. The `python` directory also contains some plotting code, but certain data needs to be manually collected and organized.
 
 ---
 # 运行环境
