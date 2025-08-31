@@ -1,5 +1,4 @@
-# Runtime Environment / 运行环境说明
-
+# Runtime Environment
 1. All code is located in the modules\cloudsim-examples\src\main directory, while other code belongs to the CloudSim module;
 
 2. To start the experiment: first run rl_server.py, and once the port is successfully listening, then start Main.java;
@@ -12,6 +11,8 @@
 
 6. The python directory also contains some plotting code, but certain data needs to be manually collected and organized.
 
+---
+# 运行环境
 
 1. 所有代码均在`modules\cloudsim-examples\src\main`目录下，其他代码为CloudSim模块代码；
 
